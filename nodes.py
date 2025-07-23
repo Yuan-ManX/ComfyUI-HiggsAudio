@@ -140,8 +140,25 @@ class HiggsAudio:
             stop_strings=["<|end_of_text|>", "<|eot_id|>"],
         )
         
-        torchaudio.save(f"output.wav", torch.from_numpy(output.audio)[None, :], output.sampling_rate)
-        
         return (output,)
 
 
+class SaveHiggsAudio:
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "audio_path": ("STRING", {"default": "output.wav"}),
+                "output": ("IMAGE",),
+            }
+        }
+
+    RETURN_TYPES = ()
+    RETURN_NAMES = ()
+    FUNCTION = "save"
+    CATEGORY = "Higgs Audio"
+
+    def save(self, audio_path, output):
+        torchaudio.save(audio_path, torch.from_numpy(output.audio)[None, :], output.sampling_rate)
+        
+        return ()
