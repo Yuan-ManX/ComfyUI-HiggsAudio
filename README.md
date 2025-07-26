@@ -23,3 +23,7 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
+
+## Model
+
+### Download Pretrained Models
